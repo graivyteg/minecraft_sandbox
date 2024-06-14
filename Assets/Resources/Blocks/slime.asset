@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6807cb4d0da2405aa2261cd272a40212, type: 3}
+  m_Name: slime
+  m_EditorClassIdentifier: 
+  Key: slime
+  Texture: {fileID: 2800000, guid: 3c7b86c85bd514305b1ddb5a42bd1840, type: 3}
