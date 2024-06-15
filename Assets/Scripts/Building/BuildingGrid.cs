@@ -1,26 +1,26 @@
 using System;
 using System.Collections.Generic;
+using Blocks;
 using UniRx;
 using UnityEngine;
+using Zenject;
 
 namespace Building
 {
     public class BuildingGrid : MonoBehaviour
     {
+        [Inject] private BlockBuilder _builder;
+        
         [SerializeField] private Vector2Int _gridSize;
         [SerializeField] private float _blockSizeMultiplier = 1;
         [SerializeField] private Transform _debugPoint;
+        [SerializeField] private Map _map;
 
-        private Dictionary<Vector3Int, string> _blocks = new ()
-        {
-            [new Vector3Int(3, 0, 0)] = "block",
-            [new Vector3Int(0, 0, 3)] = "block",
-            [new Vector3Int(3, 0, 3)] = "block"
-        };
+        private Dictionary<Vector3Int, string> _blocks = new();
 
         public bool IsFree(Vector3Int gridPosition)
         {
-            return !_blocks.ContainsKey(gridPosition);
+            return _map.IsFree(gridPosition);
         }
         
         public bool IsInGrid(Vector3Int gridPosition)
@@ -72,6 +72,12 @@ namespace Building
 
         public Vector3 GetRealPosition(Vector3Int gridPosition)
             => GetRealPosition(gridPosition.x, gridPosition.y, gridPosition.z);
+
+        public void Build(Vector3Int gridPosition, string key)
+        {
+            var block = _builder.BuildBlock(GetRealPosition(gridPosition), key);
+            _map.TryBuild(gridPosition, key);
+        }
 
         private void OnDrawGizmos()
         {

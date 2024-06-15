@@ -5,11 +5,13 @@ namespace Blocks
 {
     public class Block : MonoBehaviour
     {
-        [SerializeField] private BlockSO _so;
+        private BlockSO _so;
 
-        private void OnValidate()
+        public void Init(BlockSO so)
         {
-            GetComponent<Renderer>().material.SetTexture("_MainTex", _so.Texture);
+            _so = so;
+
+            GetComponent<Renderer>().material.mainTexture = _so.Texture;
         }
     }
 }

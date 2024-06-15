@@ -11,7 +11,7 @@ namespace Camera
 
         private IDisposable _disposable;
 
-        private void OnEnable()
+        protected virtual void OnEnable()
         {
             _disposable = _detector.CursorPosition
                 .Subscribe(OnPositionChanged);
@@ -22,7 +22,7 @@ namespace Camera
             transform.position = cursorPosition;
         }
 
-        private void OnDisable()
+        protected virtual void OnDisable()
         {
             _disposable?.Dispose();
         }
